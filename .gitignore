@@ -1,6 +1,7 @@
 # Ignore all files in the .env directory
 .env
 env/
+.idea/
 __pycache__/
 *.pyc
 *.pyo
