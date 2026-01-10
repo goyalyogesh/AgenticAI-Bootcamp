@@ -16,13 +16,24 @@ def askOpenAI(m1):
     response = llm_openai.invoke(m1)
     return response.content
 
+def askLLM(question, llm_choice):
+    if llm_choice == "Gemini":
+        return askGoogle(question)
+    elif llm_choice == "OpenAI":
+        return askOpenAI(question)
+    else:
+        return "Invalid LLM choice"
+
 # http://127.0.0.1:7860
 demo = gr.Interface(
-    fn=askGoogle,
-    inputs=gr.Textbox(label="Ask Your question here"),
+    fn=askLLM,
+    inputs=[
+        gr.Textbox(label="Ask Your question here"),
+        gr.Radio(choices=["Gemini", "OpenAI"], label="Choose LLM", value="Gemini")
+    ],
     outputs=gr.Textbox(label="Response"),
-    title="Chat with Gemini",
-    description="Chat with Google's Gemini model"
+    title="Chat with LLM",
+    description="Chat with Google's Gemini or OpenAI's GPT model"
 )
 
 if __name__ == "__main__":
