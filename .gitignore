@@ -1,5 +1,4 @@
 # Ignore all files in the .env directory
-.env
 env/
 __pycache__/
 *.pyc
