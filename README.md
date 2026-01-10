@@ -13,5 +13,5 @@
 #
 
 -remove the file from git's index
-git rm --cached path/to/your/file.txt
-git commit -m "Stop tracking and ignore path/to/your/file.txt"
+        git rm --cached path/to/your/file.txt
+        git commit -m "Stop tracking and ignore path/to/your/file.txt"
