@@ -1,6 +1,6 @@
 langchain
 langchain-openai
 langchain-google-genai
-dotenv
+python_dotenv
 openai
 gradio
