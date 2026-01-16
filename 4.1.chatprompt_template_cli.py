@@ -1,12 +1,17 @@
 from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
-from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
+import argparse
 
 load_dotenv()
 
 llm_google = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+
+args = argparse.ArgumentParser(description="Generate learning outline using Gemini LLM")
+args.add_argument("--topic", type=str, help="Topic of the learning outline", required=True)
+args.add_argument("--audience", type=str, help="Target audience for the learning outline", required=True)
+
+parsed_args = args.parse_args()
 
 prompt = ChatPromptTemplate.from_messages(
     [
@@ -27,8 +32,8 @@ prompt = ChatPromptTemplate.from_messages(
 chain = prompt | llm_google # create a chain by piping prompt to llm (LCEL syntax)
 
 variables = {
-    "topic" : "NVIDIA Certification of Agentic AI",
-    "audience": "aspiring AI professionals"
+    "topic" : parsed_args.topic,
+    "audience": parsed_args.audience
 }
 
 response = chain.invoke(variables)
@@ -37,33 +42,4 @@ print("Response Content:")
 print(response.content)
 print("********************Gemini Response end******************************")
 
-template = ChatPromptTemplate(
-    [
-        ("system", "You are a helpful AI bot. Your name is {name}."),
-        ("human", "Hello, how are you doing?"),
-        ("ai", "I'm doing well, thanks!"),
-        ("human", "{user_input}"),
-    ]
-)
-
-prompt_value = template.invoke(
-    {
-        "name": "Bob",
-        "user_input": "What is your name?",
-    }
-)
-
-
-#print("------------ChatPromptValue--------------------")
-#print(prompt_value)
-#print("------------ChatPromptValue------End--------------")
-#print(type(prompt_value)) # ChatPromptValue
-# Output:
-# ChatPromptValue(
-#    messages=[
-#        SystemMessage(content='You are a helpful AI bot. Your name is Bob.'),
-#        HumanMessage(content='Hello, how are you doing?'),
-#        AIMessage(content="I'm doing well, thanks!"),
-#        HumanMessage(content='What is your name?')
-#    ]
-# )
+#python 4.1.chatprompt_template_cli.py --topic "Agentic AI Bootcamp" --audience "Aspiring AI professionals"

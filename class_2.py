@@ -45,33 +45,30 @@ def book_flight(origin: str, destination: str, date: str) -> dict:
 tools = [get_weather, book_flight]
 tool_names = {t.name: t for t in tools}
 print("Tool Names: ", tool_names)
-print("*************************************************")
+print("*******************Tool names end******************************")
 
 llm_openai = ChatOpenAI(model="gpt-4.1-nano", temperature=1).bind_tools(tools)
-print("*************************************************")
-
 
 def run(prompt: str):
-    print("*************************************************")
-    print("Prompt: ", prompt)
-    msg = llm_openai.invoke([HumanMessage(content=prompt)])
-    print("Model Output: ", msg.content)
-    print("Model Tools Calls:", msg.tool_calls)
-    print("*************************************************")
-    print("Model Full output: ", msg)
-    print("*************************************************")
+    print("*****Prompt:****** ", prompt)
+    response = llm_openai.invoke([HumanMessage(content=prompt)])
+    print("Model Output: ", response.content)
+    print("Model Tools Calls:", response.tool_calls)
+    print("*******************Model tools calls end******************************")
+    print("Model Full output: ", response)
+    print("*********************Model full output end******************************")
 
-    messages = [HumanMessage(content=prompt), msg]  # combine the prompt and the model output
-    for call in msg.tool_calls:
+    messages = [HumanMessage(content=prompt), response]  # combine the prompt and the model output
+    for call in response.tool_calls:
         tool_name = call["name"]
         tool_args = call["args"]
         tool_id = call["id"]
         tool_result = tool_names[tool_name].invoke(tool_args)
         print("Tool Result: ", tool_result)
-        print("*************************************************")
+        print("********************Tool Result end******************************")
         messages.append(ToolMessage(content=json.dumps(tool_result), tool_call_id=tool_id))
     print("Messages: ", messages)
-    print("*************************************************")
+    print("**********************Messages end***************************")
     final_msg = llm_openai.invoke(messages)
     print("Final Model Output: ", final_msg.content)
 

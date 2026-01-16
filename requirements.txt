@@ -1,6 +1,13 @@
 langchain
 langchain-openai
 langchain-google-genai
-python_dotenv
+python-dotenv
 openai
 gradio
+
+pydantic
+langchain-google
+langgraph
+wikipedia
+langchain-community
+faiss-cpu
