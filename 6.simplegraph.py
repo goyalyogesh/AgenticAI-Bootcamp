@@ -37,7 +37,7 @@ app = workflow.compile()
 app.get_graph().draw_mermaid_png(output_file_path="simplegraph_v2.png")
 # run
 # result = app.invoke({"city": "Mumbai"})
-result = app.invoke({"city": "Mumbai", "booking": "un_confirmed"})
+result = app.invoke({"city": "Mumbai", "booking": "un_confirmed", "temperature": "50.0"})
 print("*************************************************")
 print("Result: ", result)
 print("*************************************************")
