@@ -1,0 +1,19 @@
+# Core Dependencies
+langchain
+langchain-openai
+langchain-core
+langgraph
+
+# Utilities
+python-dotenv
+pydantic
+
+# Testing
+pytest
+pytest-asyncio
+pytest-mock
+
+# Optional (for development)
+black
+flake8
+mypy
