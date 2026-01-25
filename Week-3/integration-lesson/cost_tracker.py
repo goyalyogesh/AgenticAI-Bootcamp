@@ -27,6 +27,8 @@ class CostTracker:
             "output": 10.00 / 1_000_000   # $10.00 per 1M output tokens
         }
     }
+    # alternatively you can mention in env file and read it from there
+    # Retrieve the pricing from the direct api call to the provider
     
     def __init__(self, use_redis: bool = False, redis_client=None):
         """

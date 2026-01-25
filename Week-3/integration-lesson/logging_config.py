@@ -84,6 +84,8 @@ class StructuredLogger:
                 log_entry["confidence"] = response.confidence
             if hasattr(response, 'requires_approval'):
                 log_entry["requires_approval"] = response.requires_approval
+            if hasattr(response, 'cost'):
+                log_entry["cost_usd"] = response.cost
         else:
             log_entry["error"] = error
         
