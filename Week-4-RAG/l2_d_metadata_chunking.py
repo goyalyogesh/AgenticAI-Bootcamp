@@ -31,7 +31,7 @@ def chunk_document_with_metadata(text, extraction_metadata, access_metadata):
     Returns:
         List of LangChain Document objects with metadata
     """
-    doc_hash = hashlib.md5(text.encode()).hexdigest()
+    doc_hash = hashlib.md5(text.encode()).hexdigest() # sha26 can also be used
 
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=512,
