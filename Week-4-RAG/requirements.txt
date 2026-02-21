@@ -32,6 +32,7 @@ python-magic
 lxml
 pytesseract
 pdf2image
+langchain-postgres
 
 # Note: Tesseract OCR binary must be installed separately
 # macOS: brew install tesseract ,  brew install poppler
