@@ -23,6 +23,7 @@ flake8
 mypy
 pgvector
 psycopg2-binary
+psycopg[binary]
 PyPDF2
 pdfplumber
 reportlab

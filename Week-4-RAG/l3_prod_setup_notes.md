@@ -43,7 +43,7 @@ CREATE TABLE documents (
     tenant_id UUID,
     created_by TEXT,
 
-    doc_type TEXT CHECK (doc_type IN ('pdf', 'docx', 'html', 'code', 'email')),
+    doc_type TEXT CHECK (doc_type IN ('pdf', 'docx', 'html', 'code', 'email', 'text')),
     chunk_type TEXT CHECK (chunk_type IN ('text', 'table', 'code', 'header')),
     extraction_method TEXT,
     extraction_confidence FLOAT CHECK (extraction_confidence BETWEEN 0 AND 1),
